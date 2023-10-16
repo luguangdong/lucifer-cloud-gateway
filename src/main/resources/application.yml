@@ -50,11 +50,6 @@ spring:
       routes:
         # 资源服务代理配置
         - id: resource
-          uri: lb://resource
+          uri: http://43.140.224.40:8080
           predicates:
-            - Path=/resource/**
-        # 资源服务代理配置
-        - id: webflux
-          uri: lb://webflux-resource
-          predicates:
-            - Path=/webflux/**
+            - Path=/**
