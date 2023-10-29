@@ -18,7 +18,7 @@ spec:
           image: $image
           imagePullPolicy: Always
           ports:
-            - containerPort: 8083
+            - containerPort: 80
       imagePullSecrets:
         - name: harbor-login
 ---
@@ -32,8 +32,8 @@ spec:
     app: gateway-pod
   ports:
     - protocol: TCP
-      port: 8083
-      targetPort: 8083
+      port: 80
+      targetPort: 80
       nodePort: 30103
   externalTrafficPolicy: Local
   type: LoadBalancer
