@@ -1,5 +1,6 @@
 spring:
-  application: gateway-tencent
+  application:
+    name: gateway
   cloud:
     nacos:
       config:
