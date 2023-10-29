@@ -1,4 +1,4 @@
-package com.example.config;
+package com.lucifer.cloud.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

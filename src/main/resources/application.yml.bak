@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 8081
 spring:
   security:
     oauth2:
@@ -8,13 +8,13 @@ spring:
         jwt:
           # Jwt中claims的iss属性，也就是jwt的签发地址，即认证服务器的根路径
           # 资源服务器会进一步的配置，通过该地址获取公钥以解析jwt
-          issuer-uri: http://43.140.224.40:8080
+          issuer-uri: http://lucifer-cloud.com
       client:
         provider:
           # 认证提供者,自定义名称
           custom-issuer:
             # Token签发地址(认证服务地址)
-            issuer-uri: http://43.140.224.40:8080
+            issuer-uri: http://lucifer-cloud.com
             # 获取用户信息的地址，默认的/userinfo端点需要IdToken获取，为避免麻烦自定一个用户信息接口
             user-info-uri: ${spring.security.oauth2.client.provider.custom-issuer.issuer-uri}/user
             user-name-attribute: name
@@ -33,7 +33,7 @@ spring:
             # 获取Token使用的授权流程
             authorization-grant-type: authorization_code
             # 回调地址，这里设置为Spring Security Client默认实现使用code换取token的接口
-            redirect-uri: http://127.0.0.1:7000/login/oauth2/code/messaging-client-oidc
+            redirect-uri: http://43.140.224.40:8081/login/oauth2/code/messaging-client-oidc
             scope:
               - message.read
               - message.write
@@ -49,7 +49,7 @@ spring:
         - StripPrefix=1
       routes:
         # 资源服务代理配置
-        - id: resource
-          uri: http://43.140.224.40:8080
+        - id: ums
+          uri: lb://ums
           predicates:
             - Path=/**
