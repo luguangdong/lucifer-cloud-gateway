@@ -40,6 +40,7 @@ public class ResourceServerConfig {
         // 开启全局验证
         http.authorizeExchange((authorize) -> authorize
                 //全部需要认证
+                .pathMatchers("/auth/wechat/token/get").permitAll()
                 .anyExchange().authenticated()
         );
 
