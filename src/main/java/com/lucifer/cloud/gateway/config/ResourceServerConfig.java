@@ -1,5 +1,7 @@
 package com.lucifer.cloud.gateway.config;
 
+import com.lucifer.cloud.gateway.property.CustomSecurityProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -22,8 +24,12 @@ import reactor.core.publisher.Mono;
  */
 @Configuration
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 @EnableReactiveMethodSecurity
 public class ResourceServerConfig {
+
+    private final CustomSecurityProperties customSecurityProperties;
+
 
     /**
      * 配置认证相关的过滤器链
@@ -40,7 +46,7 @@ public class ResourceServerConfig {
         // 开启全局验证
         http.authorizeExchange((authorize) -> authorize
                 //全部需要认证
-                .pathMatchers("/auth/wechat/token/get").permitAll()
+                .pathMatchers(customSecurityProperties.getIgnoreUriList().toArray(new String[0])).permitAll()
                 .anyExchange().authenticated()
         );
 
