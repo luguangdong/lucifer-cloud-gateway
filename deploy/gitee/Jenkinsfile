@@ -49,7 +49,7 @@ pipeline {
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
                                      execCommand: '',
-                                     execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                                     execTimeout: 1200000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
 
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
@@ -59,7 +59,7 @@ pipeline {
                 chmod 777  start.sh
                 sh start.sh
                 ''',
-                execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                execTimeout: 1200000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
              }
          }
     }
