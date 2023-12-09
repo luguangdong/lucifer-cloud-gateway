@@ -38,20 +38,13 @@ pipeline {
         stage('mvn build code...') {
             steps {
                 sh '${mvn_home}/bin/mvn clean package -DskipTests'
+                sh 'cp ./target/*.jar ./'
             }
         }
 
          // 将jar文件传到服务器上
          stage('transfer jar file to remoteDirectory...') {
              steps {
-                sh '''cp ./target/*.jar ./'''
-                sh '''cp ./deploy/gitee/start.sh ./'''
-
-                sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
-                                     execCommand: '',
-                                     execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
-
-
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
                 execCommand: '''
                 cd ${publisher_remoteDirectory}

@@ -1,4 +1,4 @@
-#!/bin/bash -ilex
+#!/bin/bash
 source /etc/profile
 FILEPATH=/data/deploy/lucifer-cloud/gateway
 JARFILE=gateway.jar
