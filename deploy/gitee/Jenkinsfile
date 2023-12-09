@@ -49,7 +49,7 @@ pipeline {
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
                                      execCommand: '',
-                                     execTimeout: 1200000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                                     execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_startFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
 
 
                 sshPublisher(publishers: [sshPublisherDesc(configName: "${publisher_hostName}", transfers: [sshTransfer(cleanRemote: false, excludes: '',
@@ -57,9 +57,9 @@ pipeline {
                 cd ${publisher_remoteDirectory}
                 mv ${publisher_sourceFiles} ${appName}
                 chmod 777  start.sh
-                sh start.sh
+                nohup sh start.sh
                 ''',
-                execTimeout: 1200000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: "${publisher_remoteDirectory}", remoteDirectorySDF: false, removePrefix: '', sourceFiles: "${publisher_sourceFiles}")], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
              }
          }
     }
