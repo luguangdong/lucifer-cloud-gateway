@@ -75,7 +75,7 @@ pipeline {
                 cd ${publisher_remoteDirectory}
                 mv ${publisher_sourceFiles} ${appName}
                 chmod 777  start.sh
-                nohup sh start.sh
+                sh start.sh
                 ''',
                 execTimeout: 120000,
                 flatten: false,
